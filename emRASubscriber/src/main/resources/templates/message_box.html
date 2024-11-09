@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MessageBox |subscriber</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script type="text/javascript" th:src="@{/js/plugin/jquery/jquery.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" />
+    <script type="application/javascript" th:href="@{/css/bootstrap/js/bootstrap.min.js}" />
+</head>
+<body>
+
+<div th:fragment="messagebox">
+    <!-- Check if the successMessage attribute is not null -->
+    <div th:if="${not #strings.isEmpty(successMessage)}">
+        <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Display the success message -->
+                        <p th:text="${successMessage}" id="validationMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>UI SETTINGS</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<!-- <link rel="stylesheet" th:href="@{/css/navigations.css}" /> -->
+<script type="text/javascript" th:src="@{/js/plugin/jquery/jquery.js}"></script>
+<!-- <link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+<link type="application/javascript"
+	th:href="@{/css/bootstrap/js/bootstrap.min.js}" /> -->
+</head>
+<body>
+
+
+	<div th:fragment="confirm_dialog(title,content)">
+		<!-- Modal -->
+		<div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle"
+							th:text="${title}"></h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<span th:text="${content}"></span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button id="form_submit" type="button" class="btn btn-primary">Submit
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 
+	<div th:fragment="secondary_auth">
+
+		<div class="modal" id="authenticationModal" role="dialog"
+			tabindex="-1" data-keyboard="false" data-backdrop="static"
+			aria-labelledby="authenticationModal">
+			<div class="modal-dialog" style="width: 395px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">
+							<div>Secondary Authentication</div>
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" id="authenticationClose">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="form-label">Login ID</div>
+							<input class="form-control um" name="loginId" id="loginIdUM"
+								th:value="${session.user['fullName']}" type="text"
+								required="true" disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<div class="form-label">Certificate</div>
+							<div class="list-certificate" id="adminlistcertificateUM">
+								<select class="form-control um"
+									id="secondaryadminlistcertificate">
+									<option>Select</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="adminPasswordFieldUM">
+							<div class="form-label">Token Password</div>
+							<input class="form-control um" id="tokenpasswordUM" value=""
+								type="password" required="true" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<span id="processingimgApproveModal">
+							<button type=button id="btnSecondaryAuthSubmit"
+								class="btn btn-primary">Submit</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div> -->
+
+	<div class="header fixed clearfix" th:fragment="header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<a class="logo" th:href="@{'#'}"> <img id="profile-img3"
+						th:src="@{/images/emudhra_logo.png}" alt="" />
+					</a> <span class="logo-head hidden-xs">Subscriber
+					Portal</span>
+					<!--  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-mobile" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> -->
+				</div>
+				<div class="col-md-6 hidden-xs">
+					<div class="header-top-right">
+						<div class="dropdown">
+  							<i class="fa fa-user dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+  							<div class="dropdown-menu pt-0">
+  								<div class="username">
+  									<span> Hello,</span>
+  									<b></b>
+  								</div>
+  								<a class="dropdown-item">My Profile</a>
+  								<a class="dropdown-item" th:href="@{'/logout'}">Sign Out</a>
+  							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="menu-container"
+		th:fragment="main_menu">
+
+		<div class="container-fluid">
+			<div class="main-navigation animated">
+
+				<nav class="navbar navbar-expand-lg p-0">
+
+
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav text-white">
+							<li class="nav-item active "><a class="nav-link level"
+								href="#" th:href="@{'#'}">Manage Certificates <span
+									class="sr-only">(current)</span>
+							</a></li>
+						</ul>
+
+							<!-- <li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+								th:href="@{'#'}" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">Users</a>
+								<ul class="dropdown-menu">
+									<li th:if="${session.userTypeId == 3 or session.userTypeId == 4}">
+										<a id="manageOperatorsLink" class="dropdown-item"
+										th:href="@{'/rausermanagement'}">Manage Operators
+											</a>
+									</li>
+									<li th:if="${session.userTypeId == 3 or session.userTypeId == 4}">
+										<a class="dropdown-item" th:href="@{'/viewadminusers'}">View
+											RA Admins</a>
+									</li>
+									<li th:if="${permissionIds.contains(permissionValues['11'])}">
+										<a class="dropdown-item" th:href="@{'/viewsubscriberdetails'}">View
+											Subscribers</a>
+									</li>
+								</ul></li>
+
+						<div th:if="${permissionIds.contains(permissionValues['3'])}">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{'/createorder'}">New Request</a></li>
+						</div>
+
+
+						<div th:if="${permissionIds.contains(permissionValues['5'])}">
+							<li class="nav-item"><a class="nav-link" th:href="@{'#'}"
+								> Manage Certificate </a></li>
+						</div>
+						
+						
+						<div						
+							th:if="${permissionIds.contains(permissionValues['1'])}">
+							<li class="nav-item"><a class="nav-link" th:href="@{'#'}">Approval Requests</a>
+								</li>
+								
+						</div>
+						<div th:if="${permissionIds.contains(permissionValues['12'])}">
+							<li class="nav-item"><a class="nav-link" th:href="@{'#'}"> Reassign Applications </a>
+
+								</li>
+						</div>
+						
+						<div th:if="${permissionIds.contains(permissionValues['10'])}">
+							<li class="nav-item"><a class="nav-link" th:href="@{'#'}"> Reversal requests </a>
+
+								</li>
+								</div>
+						 -->
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-section" th:fragment="footer">
+		<div class="copyright">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-9 col-sm-9">
+						<span> © eMudhra Limited. All rights reserved.</span>
+					</div>
+
+					<div class="col-md-3 col-sm-3 text-right">
+						<img id="profile-img3" th:src="@{/images/emudhra_logo.png}" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

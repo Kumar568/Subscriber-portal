@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Set up Certificate| Subscriber</title>
+
+<script type="text/javascript" th:src="@{/js/plugin/jquery/jquery.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/plugin/datatable/datatables.min.js}"></script>
+
+<script type="text/javascript"
+	th:src="@{/css/bootstrap/js/bootstrap.min.js}"></script>
+
+<script type="text/javascript"
+	th:src="@{/js/applicationjs/javascript.js}"></script>
+
+
+<script type="text/javascript"
+	th:src="@{/js/plugin/intITelInput/js/intlTelInput.js}"></script>
+
+<script type="text/javascript"
+	th:src="@{/js/applicationjs/setupcertificate.js}"></script>
+
+<script type="text/javascript">
+	/* $('.header').removeClass("fixed");
+	 $('.header .navbar-nav #menu6').addClass('active');
+	 $('[data-toggle="tooltip"]').tooltip();
+
+	 $(window).scroll(function () {
+	 updateOrderSummaryPosition();
+	 });
+
+	 $(window).resize(function () {
+	 updateOrderSummaryPosition();
+	 });
+	 $.fn.isElementInView = function (options) {
+	 // Add your Thymeleaf variables where necessary
+	 var defaults = { fullyInView: true };
+	 options = $.extend(defaults, options);
+	 function isElInView($element, fullyInView) {
+	 var pageTop = $(window).scrollTop();
+	 var pageBottom = pageTop + $(window).height();
+	 var elementTop = $element.offset().top;
+	 var elementBottom = elementTop + $element.height();
+	 return (fullyInView === true)
+	 ? ((pageTop < elementTop) && (pageBottom > elementBottom))
+	 : ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+	 }
+
+	 return isElInView($(this), options.fullyInView);
+	 };
+
+	 function updateOrderSummaryPosition() {
+	 if ($(window).width() < 1183 ||
+	 !$('.config-order-summary-wrapper').is(':visible') ||
+	 $(".ux-card:visible:first").length == 0) {
+	 return;
+	 }
+	 var paddingTop = 0 /* for prettiness when scrolling */
+	/*             $configCartWrapper = $('.config-order-summary-wrapper'),
+	 configCartWrapperHeight = $configCartWrapper.height(),
+	 scrollTop = $(window).scrollTop(),
+	 scrollLeft = $(window).scrollLeft(),
+	 topStep1 = $(".config-cards-column .ux-card:visible:first").offset().top,
+	 topOfWindowAboveTopOfStep1 = (scrollTop <= (topStep1 - paddingTop)),
+	 $footer = $('.scroll-down-wrapper'),
+	 continueBtnVisible = $('.btn-primary').isElementInView();
+	 $footer.css('visibility', continueBtnVisible ? 'hidden' : 'visible');
+	 $configCartWrapper.css({'top': '20px', 'position': 'static'});
+	 if (!topOfWindowAboveTopOfStep1) {
+	 //check for if summary can fit without going below the bottom of the ux-card
+	 var proposedNewTop = scrollTop - (topStep1 - paddingTop),
+	 proposedNewBottom = proposedNewTop + configCartWrapperHeight,
+	 $lastStep = $(".config-cards-column div.ux-card:visible:last"),
+	 bottomOfLastStep = $lastStep.offset().top + $lastStep.height() - topStep1,
+	 canFit = (proposedNewBottom <= bottomOfLastStep);
+	 if (scrollTop >= (topStep1 - paddingTop) &&
+	 ((scrollTop + configCartWrapperHeight) <= $lastStep.offset().top + $lastStep.height() + paddingTop)) {
+	 try {
+	 var configCartWrapperLeft = $configCartWrapper.offset().left;
+	 $configCartWrapper.css({
+	 'top': '0px',
+	 'position': 'fixed',
+	 'width': $configCartWrapper.innerWidth(),
+	 'left': (configCartWrapperLeft - scrollLeft) + 'px'
+	 });
+	 } catch (err) {
+	 //if errors don't float the $confiCartWrapper
+	 $configCartWrapper.css({'top': '0px', 'position': 'static'});
+	 }
+	 if ((scrollTop + paddingTop) >= $lastStep.offset().top || continueBtnVisible) {
+	 $footer.css('visibility', 'hidden');
+	 } else {
+	 $footer.css('visibility', 'visible');
+	 }
+	 } else {
+	 try {
+	 var configCartWrapperLeft = $configCartWrapper.offset().left;
+	 $configCartWrapper.css({
+	 'position': 'fixed',
+	 'width': $configCartWrapper.innerWidth(),
+	 'left': (configCartWrapperLeft - scrollLeft) + 'px'
+	 });
+	 } catch (err) {
+	 //if errors don't float the $confiCartWrapper
+	 $configCartWrapper.css({'top': '0px', 'position': 'static'});
+	 }
+	 // affix the summary so the bottom lines up with the bottom of the last step
+	 $footer.css('visibility', 'hidden');
+	 var topForBottomAligned = ($lastStep.offset().top + $lastStep.height() + $footer.height()) - (scrollTop + configCartWrapperHeight);
+	 //topForBottomAligned = bottomOfLastStep - $configCartWrapper.height() + paddingTop;
+	 $configCartWrapper.css({'top': topForBottomAligned + 'px'});
+	 }
+	 }
+	 }  */
+</script>
+
+
+
+<link rel="stylesheet" th:href="@{/css/datatable/datatables.min.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/font-awesome/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet"
+	th:href="@{/js/plugin/intITelInput/css/intlTelInput.css}" />
+</head>
+<body>
+	<div th:replace="fragments/fragments :: header"></div>
+	<div th:replace="fragments/fragments :: main_menu"></div>
+
+	<!-- <div th:fragment="setup_managecertificate">
+<div id="setupmanagecertificate"> -->
+
+	<div class="wrapper">
+
+
+
+		<div>
+
+			<div class="inner-banner-container account-banner">
+				<div class="inner-banner">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-9 col-sm-6">
+								<h2>
+									Setup Certificate - <span th:text="${productName}"></span>
+								</h2>
+							</div>
+
+							<div class="col-md-3 col-sm-6 text-right">
+								<a href="/dashboard" class="btn btn-default back-button"><i
+									class="fa fa-arrow-left"
+									style="color: #9c9c9c; margin-right: 5px;"></i> Go to Request
+									List</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<form id="recordForm1" method="post" name="recordForm1"></form>
+			<div class="container-fluid content content-page">
+				<div class="col-md-12 col-sm-12">
+					<div class="row purchase-section setup-section">
+						<div
+							class="col-md-9 col-sm-9 purchase-box setup-box config-cards-column">
+							<div class="ux-card config-step card visible-step">
+								<div class="payment-section setup-content">
+									<div class="accordion-panel" id="accordion">
+
+										<div class="panel panel-default" id="requestorPanel">
+											<div
+												class="panel-heading d-flex justify-content-between align-items-center">
+												<a aria-expanded="false" data-toggle="collapse"
+													id="arequestorDetails" data-parent="#accordion"
+													href="#requestorDetails">1. Applicant Details</a>
+												<!-- <div class="ml-auto" id="requestordetailsstatus" th:utext="${applicationDto != null and (applicationDto.applicationStatus == 1 or applicationDto.applicationStatus == 2 or applicationDto.applicationStatus == 3) ? '<span id=\'setupstatus1\' class=\'label label-warning\'>Pending RA</span>' : 'OtherText'}"></div>
+ -->
+												<div class="ml-auto mr-3" id="requestordetailsstatus"
+													th:text="${applicationDto?.applicationStatus != null and applicationDto?.applicationStatus != '' ? applicationDto?.applicationStatus : orderDetailsDto?.applicationStatus}"
+													th:style="${applicationDto?.applicationStatus == 'Completed' ? 'background-color: #28a745; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"
+													th:styleappend="${applicationDto?.applicationStatus == 'Pending' ? 'background-color: orange; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"></div>
+
+
+
+
+											</div>
+
+											<div id="requestorDetails" class="panel-collapse collapse">
+												<div class="panel-body">
+													<div class="contactdetails">
+														<div class="row mb-3">
+
+															<div class="col-md-6 col-sm-6">
+																<div class="row ">
+																	<label for="certificaterequestoremail"
+																		class="col-md-5 form-label">Type</label>
+																	<div class="col-md-7" id="certificaterequestortype1">
+																		<input type="text" autocomplete="off"
+																			class="form-control" id="type1" name="type1"
+																			th:value="${orderDetailsDto.certificatefor}" disabled />
+
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-6 col-sm-6">
+																<div class="row ">
+																	<label for="certificaterequestoremail"
+																		class="col-md-5 form-label">Email Address</label>
+																	<div class="col-md-7" id="certificaterequestoremail">
+																		<input type="text" autocomplete="off"
+																			class="form-control" id="reqmailid" name="reqmailid"
+																			th:value="${orderDetailsDto.customeremailId}"
+																			disabled />
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row mb-3">
+															<div class="col-md-6 col-sm-6">
+																<div class="row ">
+																	<label for="certificaterequestorname"
+																		class="col-md-5 form-label">Name</label>
+																	<div class="col-md-7" id="certificaterequestorname">
+																		<input type="text" autocomplete="off"
+																			class="form-control" id="reqname" name="reqname"
+																			th:value="${orderDetailsDto.customeruserName}"
+																			disabled />
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-6 col-sm-6">
+																<div class="row ">
+																	<label for="certificaterequestorphone"
+																		class="col-md-5 form-label">Mobile Number</label>
+																	<div class="col-md-7">
+																		<input type="tel" class="form-control"
+																			autocomplete="off" id="phonenumber"
+																			th:value="${orderDetailsDto.customerphoneNumber}"
+																			disabled />
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="col-md-12 d-flex justify-content-end">
+																<div class="mobile-control" id="submitbutton">
+																	<button type="button" class="btn btn-primary"
+																	
+																th:if="${applicationDto == null}">Proceed</button>
+															<!-- 			th:if="${applicationDto?.applicationStatus == 'Pending'}" -->
+																</div>
+
+															</div>
+															<input type="hidden" name="id" id="id"
+																th:value="${orderDetailsDto?.id}" /> <input
+																type="hidden" name="applicationid" id="applicationid"
+																th:value="${applicationDto?.id}" />
+														</div>
+													</div>
+													<!-- Option Fields -->
+												</div>
+												<div class="form-buttons">
+													<div id="getRequestorBlock"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="accordion-panel" id="accordion">
+										<div class="panel panel-default" id="applicantpannel">
+
+											<div
+												class="panel-heading d-flex justify-content-between align-items-center">
+												<a data-toggle="collapse" data-parent="#accordion"
+													id="aapplicantdetails" href="#certificateDetails"><span
+													style="position: inherit"></span>2. Certificate Details</a>
+												<div class="ml-auto mr-3" id="certificatedetailsstatus"
+													th:text="${applicationDto?.certificateDetailsStatus != null and applicationDto?.certificateDetailsStatus != '' ? applicationDto?.certificateDetailsStatus : orderDetailsDto?.applicationStatus}"
+													th:style="${applicationDto?.certificateDetailsStatus == 'Completed' ? 'background-color: #28a745; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"
+													th:styleappend="${applicationDto?.certificateDetailsStatus == 'Pending' ? 'background-color: orange; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"></div>
+
+											</div>
+											<!--     <div class="panel-heading">
+                                                    <a data-toggle="collapse" data-parent="#accordion" id="aapplicantdetails" href="#certificateDetails"><span style="position: inherit"></span>2. Certificate Details</a>
+                                                    <div id="applicantstatus"></div>
+                                                </div> -->
+											<div id="certificateDetails" class="panel-collapse collapse">
+												<div class="panel-body">
+
+									<!-- 				<form id="certificateform"> -->
+														<div class="contactdetails">
+
+															<div class="row mb-3">
+																<!-- Country block -->
+
+																<div class="col-md-6 col-sm-6">
+																	<div class="row">
+																		<div class="col-md-5 form-label">
+																			Common Name <span class="mandatory-mark">*</span>
+																		</div>
+																		<div class="col-md-7" id="certificaterequestortype1">
+																			<input type="text" autocomplete="off"
+																				class="form-control" th:id="'commonName'"
+																				th:name="commonName"
+																				th:value="${applicationDto?.commonName}"
+																				maxlength="64"
+																				placeholder="Can contain upto 64 characters" />
+																		</div>
+																	</div>
+																</div>
+
+
+																<!-- State block -->
+																<th:block
+																	th:each="fieldId : ${defaultFieldsResponse.defaultEnabledFields}"
+																	th:if="${#strings.equals(fieldId, defaultFieldsResponse.getValueforGender)}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Gender <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<label for="Male" style="margin-right: 20px;">
+																					<input type="radio" id="male" name="gender"
+																					value="Male" class="create"
+																					th:checked="${applicationDto?.gender == 'Male'}"
+																					th:data-maleismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}">
+																					Male
+																				</label> <label for="Female"> <input type="radio"
+																					id="female" name="gender" value="Female"
+																					class="create"
+																					th:checked="${applicationDto?.gender == 'Female'}"
+																					th:data-femaleismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}">
+																					Female
+																				</label>
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 7}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Country <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+
+																				<select id="selectCountry" name="masCountry"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:data-countryismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}">
+																					<option value="0">Select</option>
+																					<option th:each="country : ${countryDetails}"
+																						th:value="${country.id}"
+																						th:text="${country.countryName}"
+																						th:selected="${country.id == applicationDto?.countryId}"></option>
+																				</select>
+
+
+
+
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 8}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				State <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+
+																				<select id="selectState" name="state"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:data-stateismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}">
+																					<option value="0">Select</option>
+																					<option th:each="s: ${states}" th:value="${s.id}"
+																						th:text="${s.stateName}"
+																						th:selected="${s.id ==applicationDto?.stateId}"></option>
+																				</select>
+																				<!--     <select id="selectState" name="state" class="form-control create dropdownField" th:value="${applicationDto?.state}">
+                <option value="0" selected="selected">Select</option>
+            </select> -->
+																				<!--      <select id="selectState" name="state" class="form-control create dropdownField" th:value="${applicationDto?.state}"><option value="0" selected="selected">Select</option></select> 
+ -->
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 3}">
+																	<div class="col-md-6 col-sm-6"
+																		style="margin-bottom: 0;">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Date of Birth <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="date" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'dateOfBirth'" th:name="dateOfBirth"
+																					th:value="${applicationDto?.dateOfBirth}"
+																					th:data-dateofbirthismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 4}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Email ID <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'emailId'" th:name="emailId"
+																					th:value="${applicationDto?.emailId}"
+																					th:data-emailidismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 5}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Mobile Number <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'mobileNumber'" th:name="mobileNumber"
+																					th:value="${applicationDto?.mobileNumber}"
+																					maxlength="10" placeholder="Should be 10 digit"
+																					th:data-mobilenumberismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 6}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Address <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'address'" th:name="address"
+																					th:value="${applicationDto?.address}"
+																					th:data-addressismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}"
+																					placeholder="Enter alphabets a-z, A-Z,0-9 or spaces" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 9}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				City <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'city'" th:name="city"
+																					th:value="${applicationDto?.city}"
+																					th:data-cityismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}"
+																					placeholder="Enter alphabets a-z, A-Z or spaces" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 10}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Postcode <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'postalCode'" th:name="postalCode"
+																					th:value="${applicationDto?.postalCode}"
+																					maxlength="6" placeholder="Should be of 6 digit"
+																					th:data-postcodeismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 13}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				National Id Number <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'nationalId'" th:name="nationalId"
+																					th:value="${applicationDto?.nationalId}"
+																					maxlength="14" placeholder="Should be of 14 digits"
+																					th:data-nationalidnumberismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 14}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Organization <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'organizationName'"
+																					th:name="organizationName"
+																					th:value="${applicationDto?.organizationName}"
+																					placeholder="Can contain upto 64 characters"
+																					th:data-organizationismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 11}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Tax ID Number <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'pan'" th:name="pan"
+																					th:value="${applicationDto?.pan}" maxlength="16"
+																					placeholder="Should be of 16 digit"
+																					th:data-taxidnumberismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 12}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Organization Identifier <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'gstin'" th:name="gstin"
+																					th:value="${applicationDto?.gstin}"
+																					style="text-transform: uppercase" maxlength="15"
+																					placeholder="Should be of 15 digit"
+																					th:data-organizationidentifierismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 48}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Organization Unit(Additional) <span
+																					class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'ouEmp'" th:name="ouEmp"
+																					th:value="${applicationDto?.ouEmp}"
+																					placeholder="Enter alphabets a-z, A-Z or spaces"
+																					th:data-ouempismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 49}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Organization Unit(Additional Static) <span
+																					class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'ouStaticVal'" th:name="ouStaticVal"
+																					th:value="${applicationDto?.ouStaticVal}"
+																					maxlength="20"
+																					placeholder="Enter alphabets a-z, A-Z or spaces"
+																					th:data-oustaticvalismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 50}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Organization Unit(Additional) <span
+																					class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'ouadditonalVal'" th:name="ouadditonalVal"
+																					th:value="${applicationDto?.ouadditonalVal}"
+																					maxlength="20"
+																					placeholder="Enter alphabets a-z, A-Z or spaces"
+																					th:data-ouadditonalValismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 17}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				CIN <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'iecCode'" th:name="iecCode"
+																					th:value="${applicationDto?.iecCode}"
+																					maxlength="21" placeholder="Should be of 21 digit"
+																					th:data-cinismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+															</div>
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 15}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Organization Unit <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'organizationUnit'"
+																					th:name="organizationUnit"
+																					th:value="${applicationDto?.organizationUnit}"
+																					maxlength="40"
+																					placeholder="Can contain upto 64 characters"
+																					th:data-organizationunitismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 20}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label ">
+																				Serial Number <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificateserialnumber">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'registredid'" th:name="registredid"
+																					th:value="${applicationDto?.registredID}"
+																					placeholder="Enter alphabets a-z, A-Z, 0-9 or spaces"
+																					th:data-serialnumberismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 65}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Landline Number <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'landlinenumber'" th:name="landlinenumber"
+																					th:value="${applicationDto?.landlineNumber}"
+																					maxlength="11" placeholder="Should be of 11 digit"
+																					th:data-landlineismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 66}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label ">
+																				Application name <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'applicationname'" th:name="applicationname"
+																					th:value="${applicationDto?.applicationName}"
+																					placeholder="Enter alphabets a-z, A-Z or spaces"
+																					th:data-applicationismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+
+															<div class="row mb-3">
+																<!-- Country block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 67}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label">
+																				Application URL <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestortype1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'applicationurl'" th:name="applicationurl"
+																					th:value="${applicationDto?.applicationURL}"
+																					placeholder="Enter Url https://www.example.com "
+																					th:data-applicationurlmandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+
+																<!-- State block -->
+																<th:block th:each="fieldId : ${enabledFieldIds}"
+																	th:if="${fieldId == 19}">
+																	<div class="col-md-6 col-sm-6">
+																		<div class="row">
+																			<div class="col-md-5 form-label ">
+																				IP Address <span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(fieldId)}">*</span>
+																			</div>
+																			<div class="col-md-7" id="certificaterequestoremail1">
+																				<input type="text" autocomplete="off"
+																					th:class="'form-control default_'+${fieldId}"
+																					th:id="'ipaddress'" th:name="ipaddress"
+																					th:value="${applicationDto?.iPaddress}"
+																					maxlength="20"
+																					placeholder="Enter IP address 127.0.0.1 "
+																					th:data-ipaddressismandatory="${mandatoryFieldIds.contains(fieldId) ? 1 : 0}" />
+																			</div>
+																		</div>
+																	</div>
+																</th:block>
+															</div>
+
+
+
+
+
+
+
+															<div class="row">
+																<th:block
+																	th:each="field, iterStat : ${enabledadditionalField}">
+
+																	<div class="col-md-6 col-sm-6"
+																		th:if="${iterStat.index % 2 == 0}">
+
+																		<div class="row mb-3">
+																			<div class="col-md-5 form-label"
+																				th:text="${field.fieldName}">
+																				<!--     <span class="mandatory-mark" th:if="${field.isMandatory==1}">*</span> -->
+																				<span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(field.masfieldid)}">*</span>
+																			</div>
+																			<div class="col-md-7">
+																				<input type="text" autocomplete="off"
+																					class="form-control validate-field"
+																					th:id="'field_' + ${field?.masfieldid}"
+																					th:name="'field_' + ${field?.fieldName}"
+																					th:data-oid="${field.oid}"
+																					th:data-ismandatory="${field.isMandatory}"
+																					th:data-alphabets-validation="${field.alphabetsValidation}"
+																					th:data-numbers-validation="${field.numbersValidation}"
+																					th:data-special-characters-validation="${field.specialCharactersValidation}"
+																					th:value="${field?.value}" /> <span
+																					class="error-message" role="alert"
+																					aria-live="assertive"
+																					th:id="'error_' + ${field.masfieldid}"></span>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="col-md-6 col-sm-6"
+																		th:if="${iterStat.index % 2 == 1}">
+
+																		<div class="row mb-3">
+																			<div class="col-md-5 form-label"
+																				th:text="${field.fieldName}">
+																				<span class="mandatory-mark"
+																					th:if="${mandatoryFieldIds.contains(field.masfieldid)}">*</span>
+																			</div>
+																			<div class="col-md-7">
+																				<input type="text" autocomplete="off"
+																					class="form-control validate-field"
+																					th:id="'field_' + ${field?.masfieldid}"
+																					th:name="'field_' + ${field?.fieldName}"
+																					th:data-oid="${field.oid}"
+																					th:data-ismandatory="${field.isMandatory}"
+																					th:data-alphabets-validation="${field.alphabetsValidation}"
+																					th:data-numbers-validation="${field.numbersValidation}"
+																					th:data-special-characters-validation="${field.specialCharactersValidation}"
+																					th:value="${field?.value}" /> <span
+																					class="error-message" role="alert"
+																					aria-live="assertive"
+																					th:id="'error_' + ${field.masfieldid}"></span>
+																			</div>
+																		</div>
+																	</div>
+
+																</th:block>
+															</div>
+
+
+															<div class="row mb-3">
+
+																<div class="col-md-6 col-sm-6">
+																	<div class="row mb-3">
+																		<div class="col-md-5 form-label">
+																			Mode of Payment <span class="mandatory-mark">*</span>
+																		</div>
+																		<div class="col-md-7" id="certificaterequestortype1">
+																			<select id="modeofPayment" name="modeofPayment"
+																				class="form-control create dropdownField">
+																				<option value="0">Select</option>
+																				<option th:each="entry : ${paymentMode.entrySet()}"
+																					th:value="${entry.key}" th:text="${entry.value}"
+																					th:selected="${entry.key == applicationDto?.modeofPayment}">
+																				</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+
+
+
+
+																<div class="col-md-6 col-sm-6">
+																	<div class="row mb-3">
+																		<div class="col-md-5 form-label ">
+																			Name of the Bank <span class="mandatory-mark">*</span>
+																		</div>
+																		<div class="col-md-7" id="certificaterequestoremail1">
+																			<input type="text" autocomplete="off"
+																				class="form-control " th:id="'nameoftheBank'"
+																				th:name="nameoftheBank"
+																				th:value="${applicationDto?.nameoftheBank}" />
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+
+															<div class="row mb-3">
+
+																<div class="col-md-6 col-sm-6">
+																	<div class="row mb-3">
+																		<div class="col-md-5 form-label">
+																			Amount <span class="mandatory-mark">*</span>
+																		</div>
+																		<div class="col-md-7" id="certificaterequestortype1">
+																			<input type="text" autocomplete="off"
+																				class="form-control" th:id="'amount'"
+																				th:name="amount"
+																				th:value="${applicationDto?.amount}"
+																				placeholder="000000.00" />
+																		</div>
+																	</div>
+																</div>
+
+
+
+
+																<div class="col-md-6 col-sm-6">
+																	<div class="row mb-3">
+																		<div class="col-md-5 form-label ">
+																			Remarks <span class="mandatory-mark">*</span>
+																		</div>
+																		<div class="col-md-7" id="certificaterequestoremail1">
+																			<input type="text" autocomplete="off"
+																				class="form-control" th:id="'remarks'"
+																				th:name="remarks"
+																				th:value="${applicationDto?.remarks}" />
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+												<!-- 	</form> -->
+
+													<div class="col-md-12 d-flex justify-content-end">
+														<div class="mobile-control" >
+															<button type="button" class="btn btn-primary"
+															th:unless="${applicationDto?.certificateDetailsStatus == 'Completed'}" 	id="certificatesubmitbutton">Proceed</button>
+
+														</div>
+														<div class="mobile-control"
+															id="editcertificatesubmitbutton">
+															<button type="button" class="btn btn-primary"
+																id="editcertificatesubmitbutton"
+																th:if="${applicationDto?.certificateDetailsStatus == 'Completed'}">
+																Edit</button>
+														</div>
+														<div class="mobile-control"
+															id="updatecertificatesubmitbutton">
+															<button type="button" class="btn btn-primary"
+																id="updatecertificatesubmitbutton">Update</button>
+														</div>
+														<div class="mobile-control"
+															id="cancelcertificatesubmitbutton">
+															<button type="button" class="btn btn-primary"
+																id="cancelcertificatesubmitbutton">Cancel</button>
+														</div>
+													</div>
+
+												</div>
+											</div>
+											<!-- Option Fields -->
+
+										</div>
+
+									</div>
+
+
+									<div class="accordion-panel" id="accordion">
+
+
+
+
+
+										<div class="panel panel-default"
+											th:if="${vettingProfile.downloadMethodType == validationDocuments.getDownloadMethodType()}"
+											id="uploadCSRPanel">
+
+											<div
+												class="panel-heading d-flex justify-content-between align-items-center">
+												<a aria-expanded="false" data-toggle="collapse"
+													id="auploadCSR" data-parent="#accordion" href="#uploadCSR">3.Upload
+													CSR </a>
+												<div class="ml-auto mr-3" id="uploadCsrStatus"
+													th:text="${applicationDto?.uploadCsrStatus != null and applicationDto?.uploadCsrStatus != '' ? applicationDto?.uploadCsrStatus : orderDetailsDto?.applicationStatus}"
+													th:style="${applicationDto?.uploadCsrStatus == 'Completed' ? 'background-color: #28a745; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"
+													th:styleappend="${applicationDto?.uploadCsrStatus == 'Pending' ? 'background-color: orange; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"></div>
+											</div>
+
+											<div id="uploadCSR" class="panel-collapse collapse">
+												<label for="fileInput" style="margin-left: 20px;">Upload
+													CSR <span class="mandatory-mark">*</span>
+												</label> <input type="file" id="fileInput"
+													style="margin-left: 25px;" accept=".jpg, .jpeg, .pdf, .csr">
+												<div style="margin-left: 250px; display: inline-block;">
+													<label for="fileInput">CSR Type</label>
+													<button type="button" style="margin-left: 10px;"
+														class="btn btn-secondary" id="viewCsrButton">View
+														CSR Details</button>
+												</div>
+												<br> <br>
+												<textarea style="margin-left: 25px;"
+													th:utext="${applicationDto?.csr}" id="encodedData"
+													rows="10" cols="110"></textarea>
+												<button type="button" style="margin-left: 700px;"
+													th:if="${applicationDto == null or applicationDto?.csr == null}"
+													class="btn btn-primary" id="validateButton">Validate</button>
+												<button type="button" style="margin-left: 700px;"
+													th:if="${applicationDto != null and applicationDto?.csr != null}"
+													class="btn btn-primary" id="editrcsrButton">Edit</button>
+
+												<!-- Your other content within the uploadCSR div -->
+											</div>
+
+											<div id="validateCSR" class="panel-collapse collapse">
+												<label for="fileInput" style="margin-left: 20px;">CSR
+													Details </label> <label for="fileInput" style="margin-left: 250px;">CSR
+													Type</label> <br> <br>
+												<div style="margin-left: 25px;" id="csrDetailsModalContent"></div>
+												<button type="button" style="margin-left: 700px;"
+													class="btn btn-primary" id="saveCsrButton">Proceed</button>
+												<button type="button" style="margin-left: 10px;"
+													class="btn btn-secondary" id="filllaterCsrButton">Fill
+													Later</button>
+
+
+											</div>
+
+											<div class="row row-comments hideComments">
+
+												<div class="col-md-12 mt text-success" style="display: none">Successfully
+													updated!!</div>
+											</div>
+
+										</div>
+
+										<div class="panel panel-default" id="validationdocuments">
+											<div
+												class="panel-heading d-flex justify-content-between align-items-center">
+												<a th:class="${applicationDto != null and applicationDto.status >= validationDocuments.getApplicationStatusForValidationDocuments()} ? 'accordion3' : 'panel-disabled accordion3'"  data-toggle="collapse"
+													id="asetupDocuments" data-parent="#accordion"
+													href="#setupDocuments"> <span id="docsseqno"
+													style="position: inherit"
+													th:text="${vettingProfile.downloadMethodType == validationDocuments.getDownloadMethodType() ? '4.' : '3.'}">
+												</span>Validation Documents
+												</a>
+												<div class="ml-auto mr-3" id="validationDocumentsStatus"
+													th:text="${applicationDto?.validationDocumentsStatus != null and applicationDto?.validationDocumentsStatus != '' ? applicationDto?.validationDocumentsStatus : orderDetailsDto?.applicationStatus}"
+													th:style="${applicationDto?.validationDocumentsStatus == 'Completed' ? 'background-color: #28a745; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"
+													th:styleappend="${applicationDto?.validationDocumentsStatus == 'Pending' ? 'background-color: orange; color: white; font-size: 12px; padding: 0px 8px; border-radius: 5px; font-weight: 600;' : ''}"></div>
+
+											</div>
+										</div>
+										<div id="setupDocuments" class="panel-collapse collapse"
+											data-accordionid="3" aria-expanded="false">
+											<div class="panel-body">
+												<form id="fileUploadForm" enctype="multipart/form-data">
+													<div
+														th:each="validationdocument : ${validationDocuments.documents}"
+														class="verification-box">
+														<div class="box-head">
+															<div class="row">
+																<div class="col-md-6 col-sm-6 col-xs-6">
+																	<div class="d-flex align-items-center">
+																		<h4 th:text="${validationdocument.key}" class="mb-0"></h4>
+
+																		<div
+																			th:if="${#strings.equals(validationdocument.key, validationDocuments.getTypeNumForEmailVerification())}"
+																			class="ml-3 d-flex align-items-center">
+																			<i class="fa fa-info-circle" data-toggle="tooltip"
+																				data-placement="right"
+																				title="An OTP will be sent to registered Email ID, kindly enter the OTP in the below field. (or) Email link has been sent to the registered Email ID, kindly accept to verify."></i>
+																			<span class="mandatory-mark">*</span>
+
+																			<div th:if="${otpVerification != null}"
+																				th:each="otpVerification: ${otpVerification}"
+																				class="ml-3">
+																				<div id="emailRefreshStatus" class="inline">
+																					<a href="javascript:void(0);"
+																						class="btn btn-default btn-refresh"><i
+																						class="fa fa-refresh"></i></a> <span
+																						th:if="${otpVerification.isVerified == 0}"
+																						id="verificationStatus" class="badge bg-warning">
+																						Verification Pending </span> <span
+																						th:if="${otpVerification.isVerified == 1}"
+																						id="verificationStatus" class="badge bg-success">
+																						Verification Completed </span>
+																				</div>
+																			</div>
+																		</div>
+
+																		<div
+																			th:if="${#strings.equals(validationdocument.key, validationDocuments.getTypeNumForIdentityProof()) or #strings.equals(validationdocument.key, validationDocuments.getTypeNumForAddressProof())}"
+																			class="ml-3 d-flex align-items-center">
+																			<i class="fa fa-info-circle" data-toggle="tooltip"
+																				data-placement="right"
+																				title="Please upload any a) National ID b) Passport c) Driving License d) PAN Card (Tax ID) e) Post Office ID card f) Bank Account Passbook/statement containing the photograph and signed by an individual with attestation by the concerned Bank official. h) Any Government issued photo ID card bearing the signatures of the individual.">
+																				<span class="mandatory-mark">*</span>
+																			</i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+														<th:block th:each="mode : ${validationdocument.value}">
+															<th:block
+																th:if="${#strings.equals(mode.modeId, validationDocuments.getModeNumForEmailOTP())}">
+																<div class="row">
+																	<div class="col-md-5 col-sm-5">
+																		<div class="row">
+																			<div class="col-md-5 col-sm-5 form-label">Email
+																				ID</div>
+																			<div class="col-md-7 col-sm-7 tooltip-wrapper">
+																				<span th:text="${orderDetailsDto.customeremailId}"></span>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-md-5 col-sm-5">
+																		<div class="row">
+
+																			<div class="col-md-5 col-sm-5 form-label">Email
+																				OTP</div>
+
+																			<div th:if="${otpVerification != null}"
+																				th:each="otpVerificationItem: ${otpVerification}"
+																				class="col-md-7 col-sm-7" id="appenddata">
+
+
+																				<div th:if="${otpVerificationItem.isVerified == 1}"
+																					id="verified" class="col-md-15 col-sm-15">
+																					<b>Verified</b>
+																				</div>
+																			</div>
+																			<div th:if="${otpVerification == null}"
+																				class="col-md-7 col-sm-7">
+																				<!-- Content to display when otpVerification is null -->
+																				<div
+																					th:replace="fragments/validationdocumnets :: otp-verification"></div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</th:block>
+															<th:block
+																th:if="${#strings.equals(mode.modeId, validationDocuments.getModeNumForEmailLink())}">
+																<div th:if="${emailVerification == null}">
+																	<div
+																		th:replace="fragments/validationdocumnets :: email-verification"></div>
+
+																</div>
+
+															</th:block>
+
+
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="col-md-5 col-sm-5"></div>
+																	<div class="col-md-5 col-sm-5"></div>
+																	<div class="col-md-2 col-sm-2 tooltip-wrapper"
+																		id="dorgname"></div>
+																</div>
+																<div class="col-md-6 col-sm-6"></div>
+																<div class="col-md-6 col-sm-6"
+																	th:if="${#strings.equals(mode.modeId, validationDocuments.getModeNumForUploadDocument())}">
+																	<!-- Display file upload specific content -->
+																	<div class="row">
+																		<div class="col-md-5 col-sm-5 form-label">Supporting
+																			Document</div>
+
+																			
+																			<div class="col-md-7 col-sm-7 wordbreak">
+
+																			<th:block th:if="${#lists.isEmpty(uploadDocuments)}">
+																				<span th:id="${'docupload' + mode.typeId}"
+																					class="file-upload-section"> <input
+																					th:id="${'doc' + mode.typeId}"
+																					th:name="${'doc' + mode.typeId}"
+																					accept="image/*,.pdf" type="file"
+																					class="form-control file-control uploadFile typeUpload">
+																				</span>
+																			</th:block>
+
+																			<th:block
+																				th:if="${uploadDocuments != null and not #lists.isEmpty(uploadDocuments)}">
+																				<!-- Check if there is any record in uploadDocuments with type equal to mode.typeId -->
+																				<th:block th:each="document : ${uploadDocuments}">
+																					<th:block th:if="${document.type == mode.typeId}"
+																						class="downloadAndViewId">
+																						<a th:id="${'fileDownload' + mode.typeId}"
+																							class="downloadfiles mr-20 inline">Download <i
+																							class="fa fa-download"></i></a>
+
+																						<a th:id="${'fileType' + mode.typeId}"
+																							class="downloadfiles mr-20 inline">View <i
+																							class="fa fa-eye"></i></a>
+																					</th:block>
+
+																				</th:block>
+																			
+																			<div class="editUploadDocuments">
+																				<span th:id="${'docupload' + mode.typeId}"
+																					class="file-upload-section"> <input
+																					th:id="${'doc' + mode.typeId}"
+																					th:name="${'doc' + mode.typeId}"
+																					accept="image/*,.pdf" type="file"
+																					class="form-control file-control uploadFile uploadType">
+																				</span>
+																			</div>
+																			<div class="fileActionsContainer"
+																				style="display: none">
+																				<a th:id="${'fileDownload' + mode.typeId}"
+																					class="downloadfiles mr-20 inline">Download <i
+																					class="fa fa-download"></i></a> <a
+																					th:id="${'fileType' + mode.typeId}"
+																					class="downloadfiles mr-20 inline">View <i
+																					class="fa fa-eye"></i></a>
+																			</div>
+																			
+																				
+																			</div>
+
+
+																		</div>
+																</div>
+															</div>
+
+														</th:block>
+													</div>
+													<div class="form-buttons">
+														<div class="col-md-12 d-flex justify-content-end">
+														<div class="mobile-control" id="documentsubmitbutton">
+															<button th:if="${#lists.isEmpty(uploadDocuments)}"
+																type="button" class="btn btn-default"
+																id="docsubmitbutton">Proceed</button>
+															<button
+																th:if="${uploadDocuments != null and not #lists.isEmpty(uploadDocuments)}"
+																type="button" class="btn btn-default" id="doceditbutton">Edit</button>
+														</div>
+													</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="col-md-12 text-center">
+								<span id="commonsubmitspan"><input type="button"
+									id="commonsubmitandverify" class="btn btn-primary"
+									value="Submit For Verification"
+									th:if="${applicationData != null}"
+									th:disabled="${applicationData.status <= validationDocuments.getApplicationStatusForValidationDocuments()}" />
+									<input type="button" th:if="${applicationData == null}"
+									id="commonsubmitandverify" class="btn btn-primary"
+									value="Submit For Verification" disabled /></span>
+							</div>
+					</div>
+<!-- right section -->
+						<div class="col-md-3 col-sm-3">
+							<div class="order-details config-order-summary-wrapper">
+								<div class="card ux-card">
+									<h2 class="head">Request Details</h2>
+									<div class="selected-plan">
+										<div class="form-label">Request Date</div>
+										<div class="form-value" id="createddate"
+											th:text="${orderDetailsDto.createdDate}"></div>
+									</div>
+									<div class="selected-plan">
+										<div class="form-label">Application ID</div>
+										<div class="form-value" id="applicationNumber"
+											th:text="${applicationDto?.applicationNumber}"
+											th:value="${applicationDto?.id}"><input type = "hidden" id = "applicationid">
+											</div>
+									</div>
+									<div class="selected-plan">
+										<div class="form-label">Validity</div>
+										<div class="form-value" id="ovalidity"
+											th:text="${orderDetailsDto.validityUnit + ' ' + orderDetailsDto.validityFrequencyId}"></div>
+									</div>
+									<div class="selected-plan">
+										<div class="form-label"></div>
+
+										<div class="form-value tooltip-wrapper" id="ocname">CommonName</div>
+										<div class="form-value tooltip-wrapper" id="ocname"></div>
+
+										<div class="form-value" id="ocname"></div>
+
+									</div>
+									<div class="selected-plan">
+										<div class="form-label">Request Status</div>
+										<div class="form-value" id="requestStatus"
+											th:utext="${orderDetailsDto.orderDetailsStatus}"></div>
+									</div>
+									<div class="selected-plan">
+										<div class="mt-20 text-center" id="downloadForm"></div>
+										<div class="mt-20 text-center" id="viewForm"></div>
+										<div class="mt-20 text-center" id="uploadForm"></div>
+									</div>
+									<input type="hidden" name="count" id="count" value="0" />
+
+									<div class="selected-plan" id="changerequest">
+										</div>
+									<input type="hidden" id="initiaterequestvalues" />
+									<div class="modal fadmodale" id="changerequestmodal"
+										role="dialog">
+										<div class="modal-dialog confirmationmodal-modal">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+													<h4 class="modal-title">Confirmation</h4>
+												</div>
+												<div class="modal-body text-center">
+													<p>Are You Sure, You Want To Post The Following Request
+														?</p>
+													<p style="font-weight: bold;" id="requestname"></p>
+													<input type="button" id="chagerequestyes"
+														class="btn btn-primary mr" style="width: 100px;"
+														value="Continue" /> <input type="button"
+														id="chagerequestno" class="btn btn-default" value="Cancel" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal fadmodale" id="videoconfirmationMail"
+										role="dialog">
+										<div class="modal-dialog confirmationmodal-modal">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														onclick="closeVideoModal('<%=applicationslno%>');">&times;</button>
+													<h4 class="modal-title">Confirmation</h4>
+												</div>
+												<div class="modal-body text-center">
+													<p>Are you sure you want to proceed for video recording
+														without saving the documents?</p>
+													<span id="videoConfirmYesSpan"><input type="button"
+														id="videoConfirmYes" class="btn btn-primary mr"
+														style="width: 100px;" value="Continue"
+														onclick="recordVideoConfirm('<%=applicationslno%>');" /></span>
+													<span id="videoConfirmNoSpan"><input type="button"
+														id="videoConfirmNo" class="btn btn-default" value="Cancel"
+														onclick="closeVideoModal('<%=applicationslno%>');" /></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal fade" role="dialog" id="shareLinkModal">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<div id="sendMailMsg" style="display: none"></div>
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+													<h4 class="modal-title" id="userTitle">Share Link</h4>
+												</div>
+												<div class="modal-body" id="mailSend">
+													Setup certificate link will be sent to the following:
+													<div class="sharelink-box">
+														<div class="row">
+															<div class="col-md-12 form-label">Email Address</div>
+															<div class="col-md-6">
+																<select class="form-control" autocomplete="off"
+																	id="shareLinkEmails"><option value="0">Select</option></select>
+															</div>
+															<div class="col-md-6">
+																<span id="proccessingimgyes"><input type="button"
+																	class="btn btn-primary" id="yes" value="Send" /></span> <input
+																	type="button" class="btn btn-default" id="no"
+																	value="Close" />
+															</div>
+														</div>
+														<div class="divider">
+															<span>OR</span>
+														</div>
+														<div class="clearfix">
+															<div class="form-label">Web URL</div>
+															<a href="" id="setupShareLink" target="blank"
+																style="word-break: break-all;"></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="scroll-down-wrapper">&nbsp;</div>
+								</div>
+							</div>
+						</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- <!-- The modal structure -->
+	<div class="modal" id="csrDetailsModal">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+
+
+				<div class="modal-header">
+					<h4 class="modal-title">CSR Details</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+
+				<div class="modal-body">
+
+					<div name="viewCsrDetailsModalContent"
+						id="viewCsrDetailsModalContent"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="customfieldvalidationModal" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="image-container"></div>
+					<div class="text-container">
+						<i class="fa fa-times-circle" style="color: #d9534f;"></i>
+						<ul id="error-messages">
+							<!-- Error messages will be added here -->
+						</ul>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div th:replace="fragments/fragments :: footer"></div>
+		<div th:replace="fragments/message :: messagebox"></div>
+
+</body>
+
+</html>

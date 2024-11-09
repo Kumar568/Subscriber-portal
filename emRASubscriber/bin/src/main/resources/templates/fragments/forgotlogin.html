@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Forgot username | Subscriber</title>
+
+	
+
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+
+
+<body>
+
+
+	
+
+
+<div th:fragment="forgot_username">
+<div id="forgotusername">
+	
+            <form id="forgotusername1" name="forgotusername" method="post"  
+ th:objct="${user}" action="/forgotusername" >
+           
+		<div class="wrapper">
+			<div class="account-section unsupport-browser">
+				<div class="container">
+					<div class="content">
+						<div class="row">
+							<div class="col-md-10 offset-md-1">
+								<div class="row">
+									<div class="col-md-6 offset-md-3">
+										<div class="text-center">
+											<a class="logo" href="index.jsp"> <img
+												class="default-logo"
+												th:src="@{/images/emudhra_logo.png}" alt="" />
+											</a>
+										</div>
+										<div class="account-box" id="loginBlock">
+											<div id="loginsection">
+												<h1 class="title">Forgot Your Login ID?</h1>
+												
+												<div class="form-group">
+													<div class="form-label">Email ID</div>
+													<input class="form-control" name="emailid"
+														id="txtemailid" type="text" required="true"
+														maxlength="30">
+														
+												</div>
+												<div id="logintypediv">
+	<!-- 											<div class="form-group">
+    <div class="form-label">Password</div>
+    <div class="input-group">
+        <input class="form-control" name="password" id="password" type="password" tabindex="2" maxlength="25" onkeyup="removeErrorMessage(this.id);" />
+        <div class="input-group-append">
+            <button class="btn btn-light" type="button" id="togglePassword">
+                <i class="fa fa-eye" id="showpassword"></i>
+            </button>
+        </div>
+    </div>
+</div> -->
+
+													<div class="form-group">
+                                                        <div class="form-label">Captcha</div>
+                                                        <div class="captcha-box">
+                                                        	<input class="form-control" type="text"
+															style="width: 30% !important;" maxlength="6"
+															id="useridsubscribecaptcha" name="subscribecaptcha">
+															 <img
+															class="captcha-image"
+													th:src="'data:image/png;base64,'+
+															${captchaNumber.image}"
+														
+															id="captchaimg">
+															 <img
+															src="../images/refresh-icon.png"
+															 class="cpointer" alt="Refresh" />
+                                                          <div id="useridcaptchaerrormessage"></div>
+                                                        </div>
+													
+													<div class="form-group button-action">
+														
+														<div id="processingimg_login1" class="text-center">
+															<input type="submit" 
+																class="btn btn-primary" th:value="SUBMIT"
+																id="useridbtn" />
+																<input type="submit" 
+																class="btn btn-primary" th:value="CANCEL"
+																id="useridcnclbtn" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="redirect"></div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</form>
+</div>
+
+</div>
+
+<div th:fragment="forgot_password">
+<div id="forgotpassword">
+	
+            <form id="forgotpassword1" name="forgotpassword" method="post"  
+         th:objct="${login}" action="/forgotpassword" >
+           
+		<div class="wrapper">
+			<div class="account-section unsupport-browser">
+				<div class="container">
+					<div class="content">
+						<div class="row">
+							<div class="col-md-10 offset-md-1">
+								<div class="row">
+									<div class="col-md-6 offset-md-3">
+										<div class="text-center">
+											<a class="logo" href="index.jsp"> <img
+												class="default-logo"
+												th:src="@{/images/emudhra_logo.png}" alt="" />
+											</a>
+										</div>
+										<div class="account-box" id="loginBlock">
+											<div id="loginsection">
+												<h1 class="title">Forgot Your Password?</h1>
+												
+												<div class="form-group">
+													<div class="form-label">Login ID or Subscriber ID</div>
+													<input class="form-control" name="username"
+														id="textusername" type="text" required="true"
+														maxlength="30">
+														
+												</div>
+												
+												<div class="form-group">
+													<div class="form-label">Email ID</div>
+													<input class="form-control" name="emailid"
+														id="textemailid" type="text" required="true"
+														maxlength="30">
+														
+												</div>
+												<div id="logintypediv1">
+	<!-- 											<div class="form-group">
+    <div class="form-label">Password</div>
+    <div class="input-group">
+        <input class="form-control" name="password" id="password" type="password" tabindex="2" maxlength="25" onkeyup="removeErrorMessage(this.id);" />
+        <div class="input-group-append">
+            <button class="btn btn-light" type="button" id="togglePassword">
+                <i class="fa fa-eye" id="showpassword"></i>
+            </button>
+        </div>
+    </div>
+</div> -->
+
+													<div class="form-group">
+                                                        <div class="form-label">Captcha</div>
+                                                        <div class="captcha-box">
+                                                        	<input class="form-control" type="text"
+															style="width: 30% !important;" maxlength="6"
+															id="passwordsubscribecaptcha" name="subscribecaptcha">
+															 <img
+															class="captcha-image"
+													th:src="'data:image/png;base64,'+
+															${captchaNumber.image}"
+														
+															id="captchaimg">
+															 <img
+															src="../images/refresh-icon.png"
+															 class="cpointer" alt="Refresh" />
+                                                          <div id="passwordcaptchaerrormessage"></div>
+                                                        </div>
+													
+													<div class="form-group button-action">
+														
+														<div id="processingimg_login" class="text-center">
+															<input type="submit" 
+																class="btn btn-primary" th:value="SUBMIT"
+																id="passwordbtn" />
+																<input type="submit" 
+																class="btn btn-primary" th:value="CANCEL"
+																id="passwordcnclbtn" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="redirect"></div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</form>
+</div>
+
+</div>
+<div th:fragment="reset_password">
+<div id="resetpassword">
+
+<div class="wrapper">			
+            <div class="account-section">
+                <div class="container">						
+                    <div class="content">                        
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">                                    
+                                <div class="row">
+                                    <div class="col-md-6 offset-md-3">
+                                       <div class="text-center">
+											<a class="logo" href="index.jsp"> <img
+												class="default-logo"
+												th:src="@{/images/emudhra_logo.png}" alt="" />
+											</a>
+										</div>
+                                        <input type="hidden" name="resetrandomnumber" id="resetrandomnumber" value="<%=randNumber%>">
+                                        <div class="account-box">
+                                            <div id="processselection" class="processselection"></div>
+                                            <div id="reset">
+                                                <div class="form-group">
+                                                    <div class="form-label">Email ID</div>
+                                                    <input class="form-control" name="emailid" id="emailid" type="text" >
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-label">Login ID</div>
+                                                    <input class="form-control" name="resetusername" id="resetusername" type="text" disabled >
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-label">Password</div>
+                                                    <input class="form-control" name="password" id="password" type="password" tabindex="3" maxlength="25" required="true" onkeydown="validatePassword(this.value, 'reset')" onkeyup="validatePassword(this.value, 'reset');removeErrorMessage(this.id);">
+                                                    <i class="fa fa-eye showPwd" id="resetshowpassword" style="display:none;"></i>
+                                                    <i class="fa fa-eye-slash" id="resethidepassword"></i>
+                                                    <div class="tooltip-status" id="passwordTooltip" style="display:none;">
+                                                        <ul>
+                                                            <li id="rule1"><i class="fa fa-circle-o"></i> Be atleast 9 characters</li>
+                                                            <li id="rule2"><i class="fa fa-circle-o"></i> Include a lowercase letter</li>
+                                                            <li id="rule3"><i class="fa fa-circle-o"></i> Include an uppercase letter</li>
+                                                            <li id="rule4"><i class="fa fa-circle-o"></i> Include a number</li>
+                                                            <li id="rule5"><i class="fa fa-circle-o"></i> Not start or end with a space</li>
+                                                        </ul>
+                                                    </div>     
+                                                </div>      
+                                                <div class="form-group">
+                                                    <div class="form-label">Confirm Password</div>
+                                                    <input class="form-control" name="cpassword" id="cpassword" type="password" onkeydown="confirmpassword('reset')" onkeyup="confirmpassword('reset');removeErrorMessage(this.id);" maxlength="25" tabindex="4">
+                                                    <div class="tooltip-status" id="confirmpasswordTooltip" style="display:none;">
+                                                        <ul>
+                                                            <li id="rule1"><i class="fa fa-circle-o"></i> Password and Confirm Password should be same</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-label">Captcha</div>
+                                                       <div class="captcha-box">
+                                                        	<input class="form-control" type="text"
+															style="width: 30% !important;" maxlength="6"
+															id="useridsubscribecaptcha" name="subscribecaptcha">
+															 <img
+															class="captcha-image"
+													th:src="'data:image/png;base64,'+
+															${captchaNumber.image}"
+														
+															id="captchaimg">
+															 <img
+															src="../images/refresh-icon.png"
+															 class="cpointer" alt="Refresh" />
+                                                          <div id="resetcaptchaerrormessage"></div>
+                                                        </div>
+                                                 <!--    <div class="captcha-box">
+                                                        <input class="form-control" type="text"  maxlength="6" id="resetcaptcha" name="resetcaptcha" tabindex="5">
+                                                        <img alt="captcha" class="captcha-image" src="../renderImage?x=<%=randNumber%>&rand=<%=n%>&RequestVerificationToken=${csrfPreventionSalt}" id="resetpasscaptchaimg">
+                                                        <img src="../images/refresh-icon.png" onclick="refreshCaptcha(5,<%= randNumber%>)" class="cpointer">
+                                                        <div id="resetcaptchaerrormessage"></div>
+                                                    </div> -->
+                                                </div> 
+                                                <div class="form-group button-action">
+                                                    <span id="processingimg_reset">
+                                                        <input type="button" id="resetpassword" class="btn btn-primary" tabindex="6" value="Reset Password" disabled />
+                                                    </span>
+                                                    <input type="button"  class="btn btn-default" value="cancel" tabindex="7" id="cancel_idv"/></div>
+                                            </div>
+                                            <div id="resetpasswordSuccess" class="resetpasswordSuccess">
+                                                <h1 class="title" id="resetsuccessmsg"></h1>
+                                                <div class="row form-group button-action">
+                                                    <div class="col-sm-12">
+                                                        Continue to <a href="../login.jsp">Sign In</a>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                          <div class="copyright">
+        <span>© eMudhra Limited. All rights reserved.</span>
+    </div>
+                                    </div>
+                                </div>				
+                            </div>
+                        </div>				
+                    </div>
+                </div>
+            </div>	
+        </div>
+
+     </div>
+    </div>
+
+</body>
+
+</html>

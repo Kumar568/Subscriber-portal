@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Setup Certificate</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+
+<div th:fragment="otp-verification">
+<div class="form-inline" id="dorgname">
+    <input style="width: 120px;" type="text" name="msgbox" id="emailmsgbox" autocomplete="new-password">
+    <span id="emailotpbtn">
+        <input type="button" class="btn btn-primary" value="Verify OTP" id="verifyOTP">
+    </span>
+    <span id="emailresendotpbtn">
+        <input type="button" class="btn btn-default" value="Resend OTP" id="resendOTP">
+    </span>
+</div>
+</div>
+
+
+<div th:fragment="email-verification">
+	<div class="or-div">
+		<span>OR</span>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-sm-4 form-label">Email Link</div>
+		<div class="col-md-8 col-sm-8">
+			<span id="emailresendlink"> <input type="button"
+				class="btn btn-default" value="Resend Mail" id="resendMail">
+			</span>
+		</div>
+	</div>
+</div>
+
+	<!-- File Upload Section -->
+	<div th:fragment="fileUploadSection(typeId)">
+		<span th:id="${'docupload' + typeId}" class="file-upload-section">
+			<input th:id="${'doc' + typeId}" th:name="${'doc' + typeId}"
+			accept="image/*,.pdf" type="file"
+			class="form-control file-control uploadFile typeUpload">
+		</span>
+	</div>
+
+	<!-- Download and View Links -->
+	<div th:fragment="downloadAndViewLinks(document, typeId)">
+		<th:block th:if="${document == typeId}" class="downloadAndViewId">
+			<a th:id="${'fileDownload' + typeId}"
+				class="downloadfiles mr-20 inline">Download <i
+				class="fa fa-download"></i></a>
+			<a th:id="${'fileType' + typeId}" class="downloadfiles mr-20 inline">View
+				<i class="fa fa-eye"></i>
+			</a>
+		</th:block>
+	</div>
+
+	<!-- Edit Upload Documents Section -->
+	<!-- <div th:fragment="editUploadDocuments(typeId)">
+		<div class="editUploadDocuments">
+			<span th:replace="fileUploadSection(typeId)"></span>
+		</div>
+	</div> -->
+
+	<!-- File Actions Container -->
+	<div th:fragment="fileActionsContainer(typeId)">
+		<div class="fileActionsContainer" style="display: none">
+			<a th:id="${'fileDownload' + typeId}"
+				class="downloadfiles mr-20 inline">Download <i
+				class="fa fa-download"></i></a> <a th:id="${'fileType' + typeId}"
+				class="downloadfiles mr-20 inline">View <i class="fa fa-eye"></i></a>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+</html>

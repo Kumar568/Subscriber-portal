@@ -1,0 +1,106 @@
+03-01-2024 15:30:07.094 [background-preinit] INFO 
+				o.h.validator.internal.util.Version.<clinit> - HV000001: Hibernate Validator 6.2.5.Final
+03-01-2024 15:30:07.119 [restartedMain] INFO 
+				c.e.e.s.EmRaSubscriberApplication.logStarting - Starting EmRaSubscriberApplication using Java 1.8.0_291 on LAPCS100 with PID 14808 (C:\workspace\springworkspace\emRASubscriber\v1.0\emRASubscriber\target\classes started by 21356 in C:\workspace\springworkspace\emRASubscriber\v1.0\emRASubscriber)
+03-01-2024 15:30:07.121 [restartedMain] INFO 
+				c.e.e.s.EmRaSubscriberApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+03-01-2024 15:30:07.266 [restartedMain] INFO 
+				o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03-01-2024 15:30:07.266 [restartedMain] INFO 
+				o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03-01-2024 15:30:08.432 [restartedMain] INFO 
+				o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+03-01-2024 15:30:08.581 [restartedMain] INFO 
+				o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 136 ms. Found 13 JPA repository interfaces.
+03-01-2024 15:30:09.663 [restartedMain] INFO 
+				o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+03-01-2024 15:30:09.674 [restartedMain] INFO 
+				o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8080"]
+03-01-2024 15:30:09.676 [restartedMain] INFO 
+				o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+03-01-2024 15:30:09.677 [restartedMain] INFO 
+				o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.82]
+03-01-2024 15:30:09.879 [restartedMain] INFO 
+				o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+03-01-2024 15:30:09.880 [restartedMain] INFO 
+				o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 2613 ms
+03-01-2024 15:30:09.974 [restartedMain] WARN 
+				o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+03-01-2024 15:30:09.979 [restartedMain] INFO 
+				o.a.catalina.core.StandardService.log - Stopping service [Tomcat]
+03-01-2024 15:30:10.006 [restartedMain] INFO 
+				o.s.b.a.l.ConditionEvaluationReportLoggingListener.logMessage - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+03-01-2024 15:30:10.042 [restartedMain] ERROR
+				o.s.b.d.LoggingFailureAnalysisReporter.report - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method dataSourceScriptDatabaseInitializer in org.springframework.boot.autoconfigure.sql.init.DataSourceInitializationConfiguration required a bean of type 'javax.sql.DataSource' that could not be found.
+
+The following candidates were found but could not be injected:
+	- User-defined bean method 'dataSource' in 'DBConfiguration' ignored as the bean value is null
+
+
+Action:
+
+Consider revisiting the entries above or defining a bean of type 'javax.sql.DataSource' in your configuration.
+
+03-01-2024 15:30:28.609 [background-preinit] INFO 
+				o.h.validator.internal.util.Version.<clinit> - HV000001: Hibernate Validator 6.2.5.Final
+03-01-2024 15:30:28.621 [restartedMain] INFO 
+				c.e.e.s.EmRaSubscriberApplication.logStarting - Starting EmRaSubscriberApplication using Java 1.8.0_291 on LAPCS100 with PID 23728 (C:\workspace\springworkspace\emRASubscriber\v1.0\emRASubscriber\target\classes started by 21356 in C:\workspace\springworkspace\emRASubscriber\v1.0\emRASubscriber)
+03-01-2024 15:30:28.622 [restartedMain] INFO 
+				c.e.e.s.EmRaSubscriberApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+03-01-2024 15:30:28.719 [restartedMain] INFO 
+				o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03-01-2024 15:30:28.720 [restartedMain] INFO 
+				o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03-01-2024 15:30:29.663 [restartedMain] INFO 
+				o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+03-01-2024 15:30:29.801 [restartedMain] INFO 
+				o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 127 ms. Found 13 JPA repository interfaces.
+03-01-2024 15:30:30.873 [restartedMain] INFO 
+				o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+03-01-2024 15:30:30.891 [restartedMain] INFO 
+				o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8080"]
+03-01-2024 15:30:30.895 [restartedMain] INFO 
+				o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+03-01-2024 15:30:30.895 [restartedMain] INFO 
+				o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.82]
+03-01-2024 15:30:31.260 [restartedMain] INFO 
+				o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+03-01-2024 15:30:31.261 [restartedMain] INFO 
+				o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 2540 ms
+03-01-2024 15:30:31.460 [restartedMain] WARN 
+				o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+03-01-2024 15:30:31.466 [restartedMain] INFO 
+				o.a.catalina.core.StandardService.log - Stopping service [Tomcat]
+03-01-2024 15:30:31.495 [restartedMain] INFO 
+				o.s.b.a.l.ConditionEvaluationReportLoggingListener.logMessage - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+03-01-2024 15:30:31.547 [restartedMain] ERROR
+				o.s.b.d.LoggingFailureAnalysisReporter.report - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method dataSourceScriptDatabaseInitializer in org.springframework.boot.autoconfigure.sql.init.DataSourceInitializationConfiguration required a bean of type 'javax.sql.DataSource' that could not be found.
+
+The following candidates were found but could not be injected:
+	- User-defined bean method 'dataSource' in 'DBConfiguration' ignored as the bean value is null
+
+
+Action:
+
+Consider revisiting the entries above or defining a bean of type 'javax.sql.DataSource' in your configuration.
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<title>Email Verification</title>
+<script type="text/javascript" th:src="@{/js/plugin/jquery/jquery.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/plugin/datatable/datatables.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/css/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript"
+	th:src="@{/js/plugin/intITelInput/js/intlTelInput.js}"></script>
+<script type="text/javascript" th:src="@{/js/applicationjs/setupcertificate.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/datatable/datatables.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/font-awesome/css/font-awesome.min.css}" />
+</head>
+<body>
+	<div class="container-fluid content content-page mh1 accept-section">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 col-sm-12  logout-section">
+				<div class="row form-box text-center">
+
+					<form  id="uservalidatepage" name="uservalidatepage">
+
+						<div  th:if="${isVerified == 0}" id="action-submit-email"
+							th:data-applicationId-value="${applicationId}"
+							th:data-token-value="${token}">
+							<h3  id="emailtext">Click Accept button to verify your Email
+								ID</h3>
+							<div class="accept-action">
+								<input type="button" class="btn btn-primary mr" value="Accept"
+									id="emailacceptbutton"> <input type="button"
+									class="btn btn-default" value="Reject" id="emailrejectbutton">
+							</div>
+
+						</div>
+						<div th:if="${isVerified == 1}">
+							<span class="alert alert-success" role="alert"> Email
+								already verified successfully. </span>
+						</div>
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+		<div th:replace="fragments/message :: messagebox"></div>
+</body>
+</html>

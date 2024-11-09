@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script type="text/javascript" th:src="@{/js/plugin/jquery/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/css/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- <script type="text/javascript" th:src="@{/js/applicationjs/helperservice.js}"></script> -->
+    <script type="text/javascript" th:src="@{/js/applicationjs/login.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" />
+</head>
+<body class="login-page">
+    <div id="subscriberlogin">
+        <form id="loginForm" name="loginForm" method="post" th:object="${login}" action="/auth">
+            <div class="wrapper">
+                <div class="account-section unsupport-browser">
+                    <div class="container">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+                                    <div class="row">
+                                        <div class="col-md-6 offset-md-3">
+                                            <div class="text-center logo-section">
+                                                <a class="logo" href="index.jsp">
+                                                    <img class="default-logo" th:src="@{/images/emudhra_logo.png}" alt="" />
+                                                </a>
+                                            </div>
+                                            <div class="account-box" id="loginBlock">
+                                                <div id="loginsection">
+                                                    <h1 class="title">Subscriber Login</h1>
+
+                                                    <div class="form-group">
+                                                        <div class="form-label" style="float: left;">Login ID</div>
+                                                        <div class="form-label" style="float: right;">
+                                                            <a id="forgotuserid" href="javascript:void(0);">Forgot?</a>
+                                                        </div>
+                                                        <input class="form-control" name="username" id="txtUserName" type="text" required="true" maxlength="30">
+                                                    </div>
+
+                                                    <div id="logintypediv">
+                                                        <div class="form-group">
+                                                            <div class="form-label" style="float: left;">Password</div>
+                                                            <div class="form-label" style="float: right;">
+                                                                <a id="forgotuserpassword" href="javascript:void(0);">Forgot?</a>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <input class="form-control" name="password" id="password" type="password" tabindex="2" maxlength="25" onkeyup="removeErrorMessage(this.id);" />
+                                                                <span class="togglePwd" id="togglePassword">
+                                                                	<i class="fa fa-eye" id="showpassword"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="form-label">Captcha</div>
+                                                            <div class="captcha-box">
+                                                                <input class="form-control" type="text" style="width: 30% !important;" maxlength="6" id="subscribecaptcha" name="subscribecaptcha">
+                                                                <img class="captcha-image" th:src="'data:image/png;base64,'+${captchaNumber.image}" id="captchaimg">
+                                                                <img src="../images/refresh-icon.png" class="cpointer" alt="Refresh" />
+                                                                <div id="captchaerrormessage"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group button-action">
+                                                            <div id="processingimg_login" class="text-center">
+                                                                <input type="submit" style="width: 100%;" class="btn btn-primary" th:value="Login" id="btnLogin" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="redirect"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments/forgotlogin :: forgot_username"></div>
+    <div th:replace="fragments/forgotlogin :: forgot_password"></div>
+    <div class="copyright">
+        <span>© eMudhra Limited. All rights reserved.</span>
+    </div>
+</body>
+</html>
